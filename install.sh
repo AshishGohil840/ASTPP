@@ -246,7 +246,7 @@ get_user_response ()
                 echo "Server is behind NAT";
                 NAT="True"
         fi
-        curl --data "email=$EMAIL" --data "data=$NAT2" --data "type=Install" http://astppbilling.org/lib/
+        curl --data "email=$EMAIL" --data "data=$NAT2" --data "type=Install" https://astppbilling.org/lib/
 }
 
 #Install ASTPP with dependencies
@@ -322,7 +322,7 @@ normalize_astpp ()
                 CRONPATH='/var/spool/cron/astpp'
         fi
         echo "# To call all crons   
-                * * * * * cd ${ASTPP_SOURCE_DIR}/web_interface/astpp/cron/ && php cron.php crons
+                * * * * * cd ${ASTPP_SOURCE_DIR}/web_interface/astpp/cron/ && php cron.php crons > /dev/null 2>&1
                 " > $CRONPATH
                 chmod 600 $CRONPATH
                 crontab $CRONPATH
